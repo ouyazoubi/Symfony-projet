@@ -1,0 +1,100 @@
+{# templates/main/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil - Boîte à Idées{% endblock %}
+
+{% block body %}
+<div class="container my-5">
+    {# Hero Section #}
+    <div class="row align-items-center mb-5">
+        <div class="col-lg-6">
+            <h1 class="display-4 fw-bold mb-4">Partagez vos idées avec le monde</h1>
+            <p class="lead mb-4">
+                Bienvenue sur la Boîte à Idées, une plateforme collaborative où vous pouvez
+                partager vos idées innovantes et découvrir celles des autres membres de la communauté.
+            </p>
+            <div class="d-flex gap-3">
+                {% if app.user %}
+                    <a href="{{ path('app_idea_new') }}" class="btn btn-primary btn-lg">
+                        <i class="bi bi-plus-circle"></i> Poster une idée
+                    </a>
+                {% else %}
+                    <a href="{{ path('app_register') }}" class="btn btn-primary btn-lg">
+                        <i class="bi bi-person-plus"></i> S'inscrire
+                    </a>
+                    <a href="{{ path('app_login') }}" class="btn btn-outline-primary btn-lg">
+                        <i class="bi bi-box-arrow-in-right"></i> Se connecter
+                    </a>
+                {% endif %}
+                <a href="{{ path('app_idea_index') }}" class="btn btn-outline-secondary btn-lg">
+                    <i class="bi bi-lightbulb"></i> Explorer les idées
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <img src="https://via.placeholder.com/600x400/4A90E2/FFFFFF?text=Boite+a+Idees"
+                 alt="Illustration" class="img-fluid rounded shadow">
+        </div>
+    </div>
+
+    {# Features Section #}
+    <div class="row g-4 my-5">
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="bi bi-lightbulb-fill text-primary" style="font-size: 3rem;"></i>
+                    <h3 class="card-title mt-3">Partagez vos idées</h3>
+                    <p class="card-text">
+                        Publiez vos idées innovantes et recevez des retours de la communauté.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="bi bi-people-fill text-success" style="font-size: 3rem;"></i>
+                    <h3 class="card-title mt-3">Collaborez</h3>
+                    <p class="card-text">
+                        Découvrez les idées des autres membres et inspirez-vous mutuellement.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="bi bi-star-fill text-warning" style="font-size: 3rem;"></i>
+                    <h3 class="card-title mt-3">Innovez</h3>
+                    <p class="card-text">
+                        Transformez vos idées en projets concrets avec l'aide de la communauté.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# CTA Section #}
+    <div class="row my-5">
+        <div class="col-12">
+            <div class="card bg-primary text-white border-0 shadow">
+                <div class="card-body text-center p-5">
+                    <h2 class="mb-4">Prêt à partager votre prochaine grande idée ?</h2>
+                    <p class="lead mb-4">
+                        Rejoignez notre communauté d'innovateurs et faites entendre votre voix.
+                    </p>
+                    {% if not app.user %}
+                        <a href="{{ path('app_register') }}" class="btn btn-light btn-lg">
+                            Créer un compte gratuitement
+                        </a>
+                    {% else %}
+                        <a href="{{ path('app_idea_new') }}" class="btn btn-light btn-lg">
+                            Poster ma première idée
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

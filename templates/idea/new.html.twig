@@ -1,0 +1,84 @@
+{# templates/idea/new.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle idée{% endblock %}
+
+{% block body %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow">
+                <div class="card-body p-5">
+                    <h2 class="mb-4">
+                        <i class="bi bi-plus-circle"></i> Partager une nouvelle idée
+                    </h2>
+
+                    <form method="post">
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Titre de l'idée *</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="title"
+                                   name="title"
+                                   required
+                                   minlength="3"
+                                   maxlength="200"
+                                   autofocus
+                                   placeholder="Ex: Application mobile pour...">
+                            <div class="form-text">
+                                Minimum 3 caractères, maximum 200 caractères
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="category" class="form-label">Catégorie *</label>
+                            <select class="form-select" id="category" name="category" required>
+                                <option value="">Choisir une catégorie...</option>
+                                <option value="Technologie">Technologie</option>
+                                <option value="Business">Business</option>
+                                <option value="Design">Design</option>
+                                <option value="Marketing">Marketing</option>
+                                <option value="Éducation">Éducation</option>
+                                <option value="Environnement">Environnement</option>
+                                <option value="Santé">Santé</option>
+                                <option value="Social">Social</option>
+                                <option value="Autre">Autre</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="description" class="form-label">Description détaillée *</label>
+                            <textarea class="form-control"
+                                      id="description"
+                                      name="description"
+                                      rows="8"
+                                      required
+                                      minlength="10"
+                                      maxlength="2000"
+                                      placeholder="Décrivez votre idée en détail..."></textarea>
+                            <div class="form-text">
+                                Minimum 10 caractères, maximum 2000 caractères
+                            </div>
+                        </div>
+
+                        <div class="alert alert-info">
+                            <i class="bi bi-info-circle"></i>
+                            <strong>Conseil :</strong> Plus votre description est détaillée,
+                            plus les autres membres pourront comprendre et apprécier votre idée !
+                        </div>
+
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-check-circle"></i> Publier l'idée
+                            </button>
+                            <a href="{{ path('app_idea_index') }}" class="btn btn-outline-secondary">
+                                Annuler
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

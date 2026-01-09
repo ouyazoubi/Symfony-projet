@@ -1,0 +1,182 @@
+{# templates/main/contact.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact - Boîte à Idées{% endblock %}
+
+{% block body %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <h1 class="display-4 text-center mb-4">Contactez-nous</h1>
+            <p class="lead text-center mb-5">
+                Une question, une suggestion ou besoin d'aide ? N'hésitez pas à nous écrire,
+                notre équipe vous répondra dans les plus brefs délais.
+            </p>
+
+            <div class="row mb-5">
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100 border-0 shadow-sm text-center">
+                        <div class="card-body">
+                            <i class="bi bi-envelope-fill text-primary mb-3" style="font-size: 2rem;"></i>
+                            <h5 class="card-title">Email</h5>
+                            <p class="card-text small text-muted">
+                                contact@boite-idees.fr
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100 border-0 shadow-sm text-center">
+                        <div class="card-body">
+                            <i class="bi bi-telephone-fill text-success mb-3" style="font-size: 2rem;"></i>
+                            <h5 class="card-title">Téléphone</h5>
+                            <p class="card-text small text-muted">
+                                +33 1 23 45 67 89
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100 border-0 shadow-sm text-center">
+                        <div class="card-body">
+                            <i class="bi bi-geo-alt-fill text-warning mb-3" style="font-size: 2rem;"></i>
+                            <h5 class="card-title">Adresse</h5>
+                            <p class="card-text small text-muted">
+                                123 Rue de l'Innovation<br>
+                                75001 Paris, France
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card shadow">
+                <div class="card-body p-4">
+                    <h2 class="h4 mb-4">Envoyez-nous un message</h2>
+
+                    <form method="post">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="name" class="form-label">
+                                    Nom complet <span class="text-danger">*</span>
+                                </label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="name"
+                                       name="name"
+                                       placeholder="Votre nom"
+                                       required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="email" class="form-label">
+                                    Email <span class="text-danger">*</span>
+                                </label>
+                                <input type="email"
+                                       class="form-control"
+                                       id="email"
+                                       name="email"
+                                       placeholder="votre@email.fr"
+                                       required>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="subject" class="form-label">
+                                Sujet <span class="text-danger">*</span>
+                            </label>
+                            <select class="form-select" id="subject" name="subject" required>
+                                <option value="">Choisir un sujet...</option>
+                                <option value="question">Question générale</option>
+                                <option value="support">Support technique</option>
+                                <option value="suggestion">Suggestion d'amélioration</option>
+                                <option value="partnership">Partenariat</option>
+                                <option value="bug">Signaler un bug</option>
+                                <option value="other">Autre</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="message" class="form-label">
+                                Message <span class="text-danger">*</span>
+                            </label>
+                            <textarea class="form-control"
+                                      id="message"
+                                      name="message"
+                                      rows="6"
+                                      placeholder="Décrivez votre demande en détail..."
+                                      required></textarea>
+                            <div class="form-text">
+                                Minimum 20 caractères
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="form-check">
+                                <input class="form-check-input"
+                                       type="checkbox"
+                                       id="consent"
+                                       required>
+                                <label class="form-check-label" for="consent">
+                                    J'accepte que mes données soient utilisées pour traiter ma demande
+                                    conformément à notre
+                                    <a href="{{ path('app_privacy') }}" target="_blank">politique de confidentialité</a>
+                                    <span class="text-danger">*</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-block">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="bi bi-send"></i> Envoyer le message
+                            </button>
+                            <a href="{{ path('app_home') }}" class="btn btn-outline-secondary btn-lg">
+                                Annuler
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="alert alert-info mt-4">
+                <i class="bi bi-info-circle"></i>
+                <strong>Temps de réponse :</strong> Nous nous efforçons de répondre à tous les messages
+                dans un délai de 24 à 48 heures ouvrées.
+            </div>
+
+            <div class="text-center mt-5">
+                <h3 class="h5 mb-3">Suivez-nous sur les réseaux sociaux</h3>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="#" class="btn btn-outline-primary btn-sm">
+                        <i class="bi bi-twitter"></i> Twitter
+                    </a>
+                    <a href="#" class="btn btn-outline-primary btn-sm">
+                        <i class="bi bi-facebook"></i> Facebook
+                    </a>
+                    <a href="#" class="btn btn-outline-primary btn-sm">
+                        <i class="bi bi-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="#" class="btn btn-outline-primary btn-sm">
+                        <i class="bi bi-instagram"></i> Instagram
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block javascripts %}
+{{ parent() }}
+<script>
+    // Validation simple du formulaire
+    document.querySelector('form').addEventListener('submit', function(e) {
+        const message = document.getElementById('message').value;
+
+        if (message.length < 20) {
+            e.preventDefault();
+            alert('Votre message doit contenir au moins 20 caractères.');
+            return false;
+        }
+    });
+</script>
+{% endblock %}
+{% endblock %}

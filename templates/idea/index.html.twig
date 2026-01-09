@@ -1,0 +1,84 @@
+{# templates/idea/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Toutes les idées{% endblock %}
+
+{% block body %}
+<div class="container my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>
+            <i class="bi bi-lightbulb"></i> Toutes les idées
+        </h1>
+        {% if app.user %}
+            <a href="{{ path('app_idea_new') }}" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Nouvelle idée
+            </a>
+        {% endif %}
+    </div>
+
+    {# Filtres par catégorie #}
+    <div class="mb-4">
+        <div class="btn-group" role="group">
+            <a href="{{ path('app_idea_index') }}"
+               class="btn btn-sm {{ current_category is null ? 'btn-primary' : 'btn-outline-primary' }}">
+                Toutes
+            </a>
+            {% for category in categories %}
+                <a href="{{ path('app_idea_index', {category: category}) }}"
+                   class="btn btn-sm {{ current_category == category ? 'btn-primary' : 'btn-outline-primary' }}">
+                    {{ category }}
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% if ideas is empty %}
+        <div class="alert alert-info">
+            <i class="bi bi-info-circle"></i>
+            Aucune idée n'a encore été partagée.
+            {% if app.user %}
+                <a href="{{ path('app_idea_new') }}" class="alert-link">Soyez le premier à poster !</a>
+            {% else %}
+                <a href="{{ path('app_register') }}" class="alert-link">Inscrivez-vous pour poster la première idée !</a>
+            {% endif %}
+        </div>
+    {% else %}
+        <div class="row g-4">
+            {% for idea in ideas %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <span class="badge bg-primary">{{ idea.category }}</span>
+                                <small class="text-muted">
+                                    {{ idea.createdAt|date('d/m/Y') }}
+                                </small>
+                            </div>
+                            <h5 class="card-title">
+                                <a href="{{ path('app_idea_show', {id: idea.id}) }}"
+                                   class="text-decoration-none text-dark">
+                                    {{ idea.title }}
+                                </a>
+                            </h5>
+                            <p class="card-text text-muted">
+                                {{ idea.description|length > 120 ? idea.description|slice(0, 120) ~ '...' : idea.description }}
+                            </p>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">
+                                    <i class="bi bi-person"></i> {{ idea.authorName }}
+                                </small>
+                                <a href="{{ path('app_idea_show', {id: idea.id}) }}"
+                                   class="btn btn-sm btn-outline-primary">
+                                    Voir détails
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
